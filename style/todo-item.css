@@ -1,0 +1,52 @@
+.todo-item {
+    line-height: 50px;
+    position: relative;
+}
+
+.todo-item .toggle-completed {
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+
+    margin-right: 10px;
+}
+
+.todo-item .toggle-completed.completed {
+    border-color: springgreen;
+    color: springgreen;
+}
+
+.todo-item p {
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    color: #555;
+    font-family: sans-serif;
+}
+
+.todo-item .toggle-completed.completed + p {
+    text-decoration: line-through;
+    color: #ccc;
+}
+
+.todo-item .remove {
+    border: 0;
+    background: transparent;
+    position: absolute;
+    right: 10px;
+    top: 17px;
+
+    display: none;
+}
+
+.todo-item:hover .remove {
+    display: block;
+}

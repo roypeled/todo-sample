@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <title>ToDo Sample</title>
 
+    <link href="./style/todo-item.css" rel="stylesheet"/>
+
     <!-- App Templates -->
 
     <script id="todoItem" type="text/x-handlebars-template">
-        <div>
+        <div class="todo-item">
             <button class="toggle-completed {{#if isCompleted}}completed{{/if}}">
                 {{#if isCompleted}}
-                    Set uncompleted
-                {{else}}
-                    Set completed
+                    ✔
                 {{/if}}
             </button>
 
             <p>{{label}}</p>
 
-            <button class="remove">Remove</button>
+            <button class="remove">╳</button>
         </div>
     </script>
 
