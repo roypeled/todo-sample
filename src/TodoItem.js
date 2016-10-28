@@ -28,6 +28,13 @@ function TodoItemView(todoItem){
 		render();
 	}
 
+	function onRemove(handler){
+		self.html.querySelector(".remove")
+			.addEventListener("click", handler);
+	}
+
+	this.onRemove = onRemove;
+
 	init();
 	render();
 }

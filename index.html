@@ -22,6 +22,14 @@
         </div>
     </script>
 
+    <script id="todoList" type="text/x-handlebars-template">
+        <div class="todo-list">
+            <ul>
+
+            </ul>
+        </div>
+    </script>
+
     <!-- End app templates -->
 
 </head>
@@ -30,13 +38,18 @@
     <script src="./lib/handlebars.min-latest.js"></script>
     <script src="./src/TestSuite.js"></script>
     <script src="./src/TodoItem.js"></script>
+    <script src="./src/TodoList.js"></script>
 
     <script>
 
-        var testItem = new TodoItem("test item");
-        testItem.setCompleted();
-        var view = new TodoItemView(testItem);
-
+        var listArray = [
+            new TodoItem("test 1"),
+            new TodoItem("test 21"),
+            new TodoItem("test dsa1"),
+            new TodoItem("hello")
+        ];
+        var list = new TodoList(listArray);
+        var view = new TodoListView(list);
 
         document.body.appendChild(view.html);
 
