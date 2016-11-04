@@ -8,19 +8,23 @@ TodoItem.prototype.setCompleted = function(isCompleted){
 
 function TodoItemView(todoItem){
 	var template,
-		self = this;
+		self = this,
+		onRemoveHandler;
 
 	function init(){
 		var source = document.getElementById("todoItem").innerHTML;
 		template = Handlebars.compile(source);
-		self.html = document.createElement("div");
+		self.html = document.createElement("li");
 	}
 
 	function render(){
 		self.html.innerHTML = template(todoItem);
-		
+
 		self.html.querySelector(".toggle-completed")
 			.addEventListener("click", onSetCompletedClick);
+
+		self.html.querySelector(".remove")
+			.addEventListener("click", onRemoveClick);
 	}
 
 	function onSetCompletedClick(){
@@ -28,9 +32,13 @@ function TodoItemView(todoItem){
 		render();
 	}
 
+	function onRemoveClick(){
+		if(onRemoveHandler)
+			onRemoveHandler();
+	}
+
 	function onRemove(handler){
-		self.html.querySelector(".remove")
-			.addEventListener("click", handler);
+		onRemoveHandler = handler
 	}
 
 	this.onRemove = onRemove;
@@ -49,6 +57,34 @@ test("setCompleted to true", todoItem.isCompleted == true);
 
 todoItem.setCompleted(false);
 test("setCompleted to false", todoItem.isCompleted == false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

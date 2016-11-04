@@ -64,17 +64,17 @@ function TodoListView(todoList){
 	}
 
 	function registerRemove(item, itemView){
-		itemView.onRemove(function(){
+		var removeItem = function(){
 			todoList.removeItem(item);
 			render();
-		});
+		};
+		
+		itemView.onRemove(removeItem);
 	}
 
 	init();
 	render();
 }
-
-
 
 
 

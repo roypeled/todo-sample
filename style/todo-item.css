@@ -50,3 +50,7 @@
 .todo-item:hover .remove {
     display: block;
 }
+
+.todo-list ul {
+    list-style: none;
+}
