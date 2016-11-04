@@ -35,21 +35,11 @@ TodoList.prototype.clearCompleted = function(){
 	});
 };
 
-
-
 function TodoListView(todoList){
-	var template,
-		self = this;
-
-	function init(){
-		var source = document.getElementById("todoList").innerHTML;
-		template = Handlebars.compile(source);
-		self.html = document.createElement("div");
-	}
+	var self = this;
 
 	function render(){
-		self.html.innerHTML = template(todoList);
-
+		self.render(todoList);
 		var ul = self.html.querySelector("ul");
 		renderItems(ul);
 	}
@@ -72,10 +62,12 @@ function TodoListView(todoList){
 		itemView.onRemove(removeItem);
 	}
 
-	init();
+	this.init();
 	render();
 }
 
+TodoListView.prototype = new View("todoList");
+TodoListView.prototype.constructor = TodoListView;
 
 
 

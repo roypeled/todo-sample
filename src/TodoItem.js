@@ -7,18 +7,11 @@ TodoItem.prototype.setCompleted = function(isCompleted){
 };
 
 function TodoItemView(todoItem){
-	var template,
-		self = this,
+	var self = this,
 		onRemoveHandler;
 
-	function init(){
-		var source = document.getElementById("todoItem").innerHTML;
-		template = Handlebars.compile(source);
-		self.html = document.createElement("li");
-	}
-
 	function render(){
-		self.html.innerHTML = template(todoItem);
+		self.render(todoItem);
 
 		self.html.querySelector(".toggle-completed")
 			.addEventListener("click", onSetCompletedClick);
@@ -43,10 +36,12 @@ function TodoItemView(todoItem){
 
 	this.onRemove = onRemove;
 
-	init();
+	this.init();
 	render();
 }
 
+TodoItemView.prototype = new View("todoItem");
+TodoItemView.prototype.constructor = TodoItemView;
 
 var label = "This is a test label";
 var todoItem = new TodoItem(label);

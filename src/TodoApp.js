@@ -13,17 +13,11 @@ TodoApp.prototype.addItem = function(){
 
 
 function TodoAppView(todoApp){
-	var self = this,
-		template;
-
-	function init(){
-		var source = document.getElementById("todoApp").innerHTML;
-		template = Handlebars.compile(source);
-		self.html = document.createElement("div");
-	}
+	var self = this;
 	
 	function render(){
-		self.html.innerHTML = template(todoApp);
+		self.render(todoApp);
+
 		var list = self.html.querySelector(".list");
 		var todoListView = new TodoListView(todoApp.list);
 		list.appendChild(todoListView.html);
@@ -44,6 +38,9 @@ function TodoAppView(todoApp){
 		render();
 	}
 
-	init();
+	this.init();
 	render();
 }
+
+TodoAppView.prototype = new View("todoApp");
+TodoAppView.prototype.constructor = TodoAppView;
