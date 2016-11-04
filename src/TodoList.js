@@ -1,4 +1,5 @@
 function TodoList(){
+	this.todoItemsList = [];
 }
 
 TodoList.prototype.removeItem = function(todoItem){
