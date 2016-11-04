@@ -10,21 +10,24 @@
 
     <script id="todoItem" type="text/x-handlebars-template">
         <div class="todo-item">
-            <button class="toggle-completed {{#if isCompleted}}completed{{/if}}">
-                {{#if isCompleted}}
+            <button ng-click="$ctrl.setCompleted(!$ctrl.isCompleted)" ng-class="{completed: $ctrl.isCompleted}" class="toggle-completed">
+                <span ng-if="$ctrl.isCompleted">
                     ✔
-                {{/if}}
+                </span>
             </button>
 
-            <p>{{label}}</p>
+            <p>{{$ctrl.label}}</p>
 
-            <button class="remove">╳</button>
+            <button class="remove" ng-click="$ctrl.onRemove()">╳</button>
         </div>
     </script>
 
     <script id="todoList" type="text/x-handlebars-template">
         <div class="todo-list">
             <ul>
+                <li ng-repeat="item in $ctrl.todoItemsList">
+                    <todo-item label="item" on-remove="$ctrl.removeItem(item)"></todo-item>
+                </li>
             </ul>
         </div>
     </script>
@@ -32,11 +35,11 @@
     <script id="todoApp" type="text/x-handlebars-template">
         <div class="todo-app">
             <div class="input">
-                <input type="text" placeholder="New item label..."/>
-                <button>Add Item</button>
+                <input type="text" ng-model="$ctrl.newItemLabel" placeholder="New item label..."/>
+                <button ng-click="$ctrl.addItem()">Add Item</button>
             </div>
             <div class="list">
-
+                <todo-list todo-items-list="$ctrl.list"></todo-list>
             </div>
         </div>
     </script>
@@ -44,20 +47,15 @@
     <!-- End app templates -->
 
 </head>
-<body>
+<body ng-app="app">
 
-    <script src="./lib/handlebars.min-latest.js"></script>
+    <script src="./lib/angular.min.js"></script>
     <script src="./src/TestSuite.js"></script>
+    <script src="./src/TodoApp.js"></script>
     <script src="./src/TodoItem.js"></script>
     <script src="./src/TodoList.js"></script>
-    <script src="./src/TodoApp.js"></script>
 
-    <script>
+    <todo-app></todo-app>
 
-        var app = new TodoApp();
-        var view = new TodoAppView(app);
-        document.body.appendChild(view.html);
-
-    </script>
 </body>
 </html>

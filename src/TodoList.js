@@ -1,10 +1,5 @@
-function TodoList(list){
-	this.todoItemsList = list || [];
+function TodoList(){
 }
-
-TodoList.prototype.addItem = function(todoItem){
-	this.todoItemsList.push(todoItem);
-};
 
 TodoList.prototype.removeItem = function(todoItem){
 	for(var i=0; i<this.todoItemsList.length; i++) {
@@ -35,47 +30,14 @@ TodoList.prototype.clearCompleted = function(){
 	});
 };
 
-
-
-function TodoListView(todoList){
-	var template,
-		self = this;
-
-	function init(){
-		var source = document.getElementById("todoList").innerHTML;
-		template = Handlebars.compile(source);
-		self.html = document.createElement("div");
-	}
-
-	function render(){
-		self.html.innerHTML = template(todoList);
-
-		var ul = self.html.querySelector("ul");
-		renderItems(ul);
-	}
-
-	function renderItems(ul){
-		for(var i=0; i<todoList.todoItemsList.length; i++){
-			var item = todoList.todoItemsList[i];
-			var itemView = new TodoItemView(item);
-			registerRemove(item, itemView);
-			ul.appendChild(itemView.html);
-		}
-	}
-
-	function registerRemove(item, itemView){
-		var removeItem = function(){
-			todoList.removeItem(item);
-			render();
-		};
-		
-		itemView.onRemove(removeItem);
-	}
-
-	init();
-	render();
-}
-
+angular.module("app")
+	.component("todoList", {
+		template: document.querySelector("#todoList").innerHTML,
+		bindings: {
+			todoItemsList: "<"
+		},
+		controller: TodoList
+	});
 
 
 
