@@ -6,59 +6,9 @@
 
     <link href="./style/todo-item.css" rel="stylesheet"/>
 
-    <!-- App Templates -->
-
-    <script id="todoItem" type="text/x-handlebars-template">
-        <div class="todo-item">
-            <button class="toggle-completed {{#if isCompleted}}completed{{/if}}">
-                {{#if isCompleted}}
-                    ✔
-                {{/if}}
-            </button>
-
-            <p>{{label}}</p>
-
-            <button class="remove">╳</button>
-        </div>
-    </script>
-
-    <script id="todoList" type="text/x-handlebars-template">
-        <div class="todo-list">
-            <ul>
-            </ul>
-        </div>
-    </script>
-
-    <script id="todoApp" type="text/x-handlebars-template">
-        <div class="todo-app">
-            <div class="input">
-                <input type="text" placeholder="New item label..."/>
-                <button>Add Item</button>
-            </div>
-            <div class="list">
-
-            </div>
-        </div>
-    </script>
-
-    <!-- End app templates -->
-
 </head>
 <body>
 
-    <script src="./lib/handlebars.min-latest.js"></script>
-    <script src="./src/TestSuite.js"></script>
-    <script src="./src/View.js"></script>
-    <script src="./src/TodoItem.js"></script>
-    <script src="./src/TodoList.js"></script>
-    <script src="./src/TodoApp.js"></script>
-
-    <script>
-
-        var app = new TodoApp();
-        var view = new TodoAppView(app);
-        document.body.appendChild(view.html);
-
-    </script>
+<script src="dist/app.js"></script>
 </body>
 </html>
